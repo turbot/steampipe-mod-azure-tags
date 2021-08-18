@@ -7,7 +7,7 @@ benchmark "untagged" {
 }
 
 control "compute_virtual_machine_untagged" {
-  title = "Compute Virtual Machine Untagged"
+  title = "Compute Virtual Machines Untagged"
   sql = <<EOT
     select
       name as resource,
