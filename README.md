@@ -100,9 +100,9 @@ OLDIFS=$IFS
 IFS='#'
 
 INPUT=$(steampipe check control.compute_virtual_machine_mandatory --var 'mandatory_tags=["Application"]' --output csv --header=false --separator '#' | grep 'alarm')
-[ -z "$INPUT" ] && { echo "No instances in alarm, aborting"; exit 0; }
+[ -z "$INPUT" ] && { echo "No virtual machines in alarm, aborting"; exit 0; }
 
-while read -r group_id title description control_id control_title control_description reason resource status account_id region
+while read -r group_id title description control_id control_title control_description reason resource status resource_group subscription
 do
   az tag create --resource-id ${resource} --tags Application=MyApplication
 done <<< "$INPUT"
@@ -118,9 +118,9 @@ OLDIFS=$IFS
 IFS='#'
 
 INPUT=$(steampipe check control.compute_virtual_machine_prohibited --var 'prohibited_tags=["Password"]' --output csv --header=false --separator '#' | grep 'alarm')
-[ -z "$INPUT" ] && { echo "No instances in alarm, aborting"; exit 0; }
+[ -z "$INPUT" ] && { echo "No virtual machines in alarm, aborting"; exit 0; }
 
-while read -r group_id title description control_id control_title control_description reason resource status account_id region
+while read -r group_id title description control_id control_title control_description reason resource status resource_group subscription
 do
   az tag delete --resource-id ${resource} --name Password --yes
 done <<< "$INPUT"
