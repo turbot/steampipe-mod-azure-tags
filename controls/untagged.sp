@@ -17,8 +17,8 @@ locals {
 }
 
 locals {
-  untagged_sql_subscription   = replace(local.mandatory_sql, "__DIMENSIONS__", "subscription_id")
-  untagged_sql_resource_group = replace(local.mandatory_sql, "__DIMENSIONS__", "resource_group, subscription_id")
+  untagged_sql_subscription   = replace(local.untagged_sql, "__DIMENSIONS__", "subscription_id")
+  untagged_sql_resource_group = replace(local.untagged_sql, "__DIMENSIONS__", "resource_group, subscription_id")
 }
 
 benchmark "untagged" {

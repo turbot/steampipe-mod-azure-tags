@@ -37,8 +37,8 @@ locals {
 }
 
 locals {
-  prohibited_sql_subscription   = replace(local.mandatory_sql, "__DIMENSIONS__", "subscription_id")
-  prohibited_sql_resource_group = replace(local.mandatory_sql, "__DIMENSIONS__", "resource_group, subscription_id")
+  prohibited_sql_subscription   = replace(local.prohibited_sql, "__DIMENSIONS__", "subscription_id")
+  prohibited_sql_resource_group = replace(local.prohibited_sql, "__DIMENSIONS__", "resource_group, subscription_id")
 }
 
 benchmark "prohibited" {
