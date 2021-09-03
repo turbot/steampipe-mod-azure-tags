@@ -122,7 +122,7 @@ INPUT=$(steampipe check control.compute_virtual_machine_prohibited --var 'prohib
 
 while read -r group_id title description control_id control_title control_description reason resource status account_id region
 do
-  az tag delete --resource-id ${resource} -name Password
+  az tag delete --resource-id ${resource} --name Password --yes
 done <<< "$INPUT"
 
 IFS=$OLDIFS
