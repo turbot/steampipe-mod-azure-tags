@@ -60,7 +60,7 @@ steampipe query "select resource_name, title, description from steampipe_control
 
 Run a specific control:
 ```shell
-steampipe check control.s3_bucket_untagged
+steampipe check control.compute_virtual_machine_untagged
 ```
 
 ### Configuration
