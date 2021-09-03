@@ -4,11 +4,11 @@ repository: "https://github.com/turbot/steampipe-mod-azure-tags"
 
 # Azure Tags Mod
 
-Run tagging controls across all your Azure subscriptions.
+Run tagging controls across all your Azure subscriptions to look for untagged resources, missing tags, resources with too many tags, and more.
 
 ## References
 
-[Azure](https://azure.microsoft.com/) provides on-demand cloud computing platforms and APIs to authenticated customers on a metered pay-as-you-go basis.
+[Azure](https://azure.amazon.com/) provides on-demand cloud computing platforms and APIs to authenticated customers on a metered pay-as-you-go basis.
 
 [Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
 
@@ -17,19 +17,29 @@ Run tagging controls across all your Azure subscriptions.
 ## Documentation
 
 - **[Benchmarks and controls →](https://hub.steampipe.io/mods/turbot/azure_tags/controls)**
-- **[Named queries →](https://hub.steampipe.io/mods/turbot/azure_tags/queries)**
 
-## Get started
+## Getting started
 
-Install the Azure plugin with [Steampipe](https://steampipe.io):
+### Installation
+
+1) Install the Azure plugin:
 ```shell
 steampipe plugin install azure
 ```
 
-Clone:
+2) Clone this repo:
 ```sh
 git clone https://github.com/turbot/steampipe-mod-azure-tags.git
 cd steampipe-mod-azure-tags
+```
+
+### Usage
+
+#### Running benchmarks
+
+Preview running all benchmarks:
+```shell
+steampipe check all --dry-run
 ```
 
 Run all benchmarks:
@@ -37,14 +47,26 @@ Run all benchmarks:
 steampipe check all
 ```
 
-Run a single benchmark:
+Use Steampipe introspection to view all current benchmarks:
+```shell
+steampipe query "select resource_name, title, description from steampipe_benchmark;"
+```
+
+Run an individual benchmark:
 ```shell
 steampipe check benchmark.untagged
 ```
 
+#### Running controls
+
+Use Steampipe introspection to view all current controls:
+```shell
+steampipe query "select resource_name, title, description from steampipe_control;"
+```
+
 Run a specific control:
 ```shell
-steampipe check control.storage_account_untagged
+steampipe check control.s3_bucket_untagged
 ```
 
 ### Credentials
@@ -53,7 +75,68 @@ This mod uses the credentials configured in the [Steampipe Azure plugin](https:/
 
 ### Configuration
 
-No extra configuration is required.
+Several benchmarks have variables that can be configured to better match your environment and requirements. Each variable has a default defined in `steampipe.spvars`, but these can be overriden in several ways:
+
+- Modify the `steampipe.spvars` file
+- Remove or comment out the value in `steampipe.spvars`, after which Steampipe will prompt you for a value when running a query or check
+- Pass in a value on the command line:
+  ```shell
+  steampipe check benchmark.mandatory --var 'mandatory_tags=["Application", "Environment", "Department", "Owner"]'
+  ```
+- Set an environment variable:
+  ```shell
+  SP_VAR_mandatory_tags='["Application", "Environment", "Department", "Owner"]' steampipe check control.compute_virtual_machine_mandatory
+  ```
+  - Note: When using environment variables, if the variable is defined in `steampipe.spvars` or passed in through the command line, either of those will take precedence over the environment variable value. For more information on variable definition precedence, please see the link below.
+
+TODO: Fix these links
+
+These are some of the ways you can set variables, but for a full list, please see [Variables](https://hub.steampipe.io/linkhere).
+
+For more information on variable definition precedence, please see [Variables](https://hub.steampipe.io/linkhere).
+
+## Advanced usage
+
+### Remediation
+
+Using the control output and the Azure CLI, you can remediate various tagging issues.
+
+For instance, with the results of the `compute_virtual_machine_mandatory` control, you can add missing tags with the Azure CLI:
+
+```bash
+#!/bin/bash
+
+OLDIFS=$IFS
+IFS='#'
+
+INPUT=$(steampipe check control.compute_virtual_machine_mandatory --var 'mandatory_tags=["Application"]' --output csv --header=false --separator '#' | grep 'alarm')
+[ -z "$INPUT" ] && { echo "No instances in alarm, aborting"; exit 0; }
+
+while read -r group_id title description control_id control_title control_description reason resource status account_id region
+do
+  az tag create --resource-id ${resource} --tags Application=MyApplication
+done <<< "$INPUT"
+
+IFS=$OLDIFS
+```
+
+To remove prohibited tags from Compute virtual machines:
+```bash
+#!/bin/bash
+
+OLDIFS=$IFS
+IFS='#'
+
+INPUT=$(steampipe check control.compute_virtual_machine_mandatory --var 'prohibited_tags=["Password"]' --output csv --header=false --separator '#' | grep 'alarm')
+[ -z "$INPUT" ] && { echo "No instances in alarm, aborting"; exit 0; }
+
+while read -r group_id title description control_id control_title control_description reason resource status account_id region
+do
+  az tag delete --resource-id ${resource} -name Password
+done <<< "$INPUT"
+
+IFS=$OLDIFS
+```
 
 ## Get involved
 
