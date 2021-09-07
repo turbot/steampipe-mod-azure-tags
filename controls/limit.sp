@@ -97,8 +97,8 @@ benchmark "limit" {
 }
 
 control "api_management_tag_limit" {
-  title       = "API managements should not exceed tag limit"
-  description = "Check if the number of tags on API managements do not exceed the limit."
+  title       = "API Management services should not exceed tag limit"
+  description = "Check if the number of tags on API Management services do not exceed the limit."
   sql         = replace(local.limit_sql_resource_group, "__TABLE_NAME__", "azure_api_management")
   param "tag_limit" {
     default = var.tag_limit
@@ -106,8 +106,8 @@ control "api_management_tag_limit" {
 }
 
 control "app_service_environment_tag_limit" {
-  title       = "App service environments should not exceed tag limit"
-  description = "Check if the number of tags on App service environments do not exceed the limit."
+  title       = "App Service environments should not exceed tag limit"
+  description = "Check if the number of tags on App Service environments do not exceed the limit."
   sql         = replace(local.limit_sql_resource_group, "__TABLE_NAME__", "azure_app_service_environment")
   param "tag_limit" {
     default = var.tag_limit
@@ -115,8 +115,8 @@ control "app_service_environment_tag_limit" {
 }
 
 control "app_service_function_app_tag_limit" {
-  title       = "App service function apps should not exceed tag limit"
-  description = "Check if the number of tags on App service function apps do not exceed the limit."
+  title       = "App Service function apps should not exceed tag limit"
+  description = "Check if the number of tags on App Service function apps do not exceed the limit."
   sql         = replace(local.limit_sql_resource_group, "__TABLE_NAME__", "azure_app_service_function_app")
   param "tag_limit" {
     default = var.tag_limit
@@ -124,8 +124,8 @@ control "app_service_function_app_tag_limit" {
 }
 
 control "app_service_plan_tag_limit" {
-  title       = "App service plans should not exceed tag limit"
-  description = "Check if the number of tags on App service plans do not exceed the limit."
+  title       = "App Service plans should not exceed tag limit"
+  description = "Check if the number of tags on App Service plans do not exceed the limit."
   sql         = replace(local.limit_sql_resource_group, "__TABLE_NAME__", "azure_app_service_plan")
   param "tag_limit" {
     default = var.tag_limit
@@ -133,8 +133,8 @@ control "app_service_plan_tag_limit" {
 }
 
 control "app_service_web_app_tag_limit" {
-  title       = "App service web apps should not exceed tag limit"
-  description = "Check if the number of tags on App service web apps do not exceed the limit."
+  title       = "App Service web apps should not exceed tag limit"
+  description = "Check if the number of tags on App Service web apps do not exceed the limit."
   sql         = replace(local.limit_sql_resource_group, "__TABLE_NAME__", "azure_app_service_web_app")
   param "tag_limit" {
     default = var.tag_limit
@@ -268,8 +268,8 @@ control "data_factory_tag_limit" {
 }
 
 control "data_lake_analytics_account_tag_limit" {
-  title       = "Data lake analytics accounts should not exceed tag limit"
-  description = "Check if the number of tags on Data lake analytics accounts do not exceed the limit."
+  title       = "Data Lake analytics accounts should not exceed tag limit"
+  description = "Check if the number of tags on Data Lake analytics accounts do not exceed the limit."
   sql         = replace(local.limit_sql_resource_group, "__TABLE_NAME__", "azure_data_lake_analytics_account")
   param "tag_limit" {
     default = var.tag_limit
@@ -277,8 +277,8 @@ control "data_lake_analytics_account_tag_limit" {
 }
 
 control "data_lake_store_tag_limit" {
-  title       = "Data lake stores should not exceed tag limit"
-  description = "Check if the number of tags on Data lake stores do not exceed the limit."
+  title       = "Data Lake stores should not exceed tag limit"
+  description = "Check if the number of tags on Data Lake stores do not exceed the limit."
   sql         = replace(local.limit_sql_resource_group, "__TABLE_NAME__", "azure_data_lake_store")
   param "tag_limit" {
     default = var.tag_limit
@@ -295,8 +295,8 @@ control "eventhub_namespace_tag_limit" {
 }
 
 control "express_route_circuit_tag_limit" {
-  title       = "Express route circuits should not exceed tag limit"
-  description = "Check if the number of tags on Express route circuits do not exceed the limit."
+  title       = "ExpressRoute circuits should not exceed tag limit"
+  description = "Check if the number of tags on ExpressRoute circuits do not exceed the limit."
   sql         = replace(local.limit_sql_resource_group, "__TABLE_NAME__", "azure_express_route_circuit")
   param "tag_limit" {
     default = var.tag_limit
@@ -583,8 +583,8 @@ control "storage_account_tag_limit" {
 }
 
 control "stream_analytics_job_tag_limit" {
-  title       = "Stream analytics jobs should not exceed tag limit"
-  description = "Check if the number of tags on Stream analytics jobs do not exceed the limit."
+  title       = "Stream Analytics jobs should not exceed tag limit"
+  description = "Check if the number of tags on Stream Analytics jobs do not exceed the limit."
   sql         = replace(local.limit_sql_resource_group, "__TABLE_NAME__", "azure_stream_analytics_job")
   param "tag_limit" {
     default = var.tag_limit

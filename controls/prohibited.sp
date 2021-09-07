@@ -106,8 +106,8 @@ benchmark "prohibited" {
 }
 
 control "api_management_prohibited" {
-  title       = "API managements should not have prohibited tags"
-  description = "Check if API managements have any prohibited tags."
+  title       = "API Management services should not have prohibited tags"
+  description = "Check if API Management services have any prohibited tags."
   sql         = replace(local.prohibited_sql_resource_group, "__TABLE_NAME__", "azure_api_management")
   param "prohibited_tags" {
     default = var.prohibited_tags
@@ -115,8 +115,8 @@ control "api_management_prohibited" {
 }
 
 control "app_service_environment_prohibited" {
-  title       = "App service environments should not have prohibited tags"
-  description = "Check if App service environments have any prohibited tags."
+  title       = "App Service environments should not have prohibited tags"
+  description = "Check if App Service environments have any prohibited tags."
   sql         = replace(local.prohibited_sql_resource_group, "__TABLE_NAME__", "azure_app_service_environment")
   param "prohibited_tags" {
     default = var.prohibited_tags
@@ -124,8 +124,8 @@ control "app_service_environment_prohibited" {
 }
 
 control "app_service_function_app_prohibited" {
-  title       = "App service function apps should not have prohibited tags"
-  description = "Check if App service function apps have any prohibited tags."
+  title       = "App Service function apps should not have prohibited tags"
+  description = "Check if App Service function apps have any prohibited tags."
   sql         = replace(local.prohibited_sql_resource_group, "__TABLE_NAME__", "azure_app_service_function_app")
   param "prohibited_tags" {
     default = var.prohibited_tags
@@ -133,8 +133,8 @@ control "app_service_function_app_prohibited" {
 }
 
 control "app_service_plan_prohibited" {
-  title       = "App service plans should not have prohibited tags"
-  description = "Check if App service plans have any prohibited tags."
+  title       = "App Service plans should not have prohibited tags"
+  description = "Check if App Service plans have any prohibited tags."
   sql         = replace(local.prohibited_sql_resource_group, "__TABLE_NAME__", "azure_app_service_plan")
   param "prohibited_tags" {
     default = var.prohibited_tags
@@ -142,8 +142,8 @@ control "app_service_plan_prohibited" {
 }
 
 control "app_service_web_app_prohibited" {
-  title       = "App service web apps should not have prohibited tags"
-  description = "Check if App service web apps have any prohibited tags."
+  title       = "App Service web apps should not have prohibited tags"
+  description = "Check if App Service web apps have any prohibited tags."
   sql         = replace(local.prohibited_sql_resource_group, "__TABLE_NAME__", "azure_app_service_web_app")
   param "prohibited_tags" {
     default = var.prohibited_tags
@@ -304,8 +304,8 @@ control "eventhub_namespace_prohibited" {
 }
 
 control "express_route_circuit_prohibited" {
-  title       = "Express route circuits should not have prohibited tags"
-  description = "Check if Express route circuits have any prohibited tags."
+  title       = "ExpressRoute circuits should not have prohibited tags"
+  description = "Check if ExpressRoute circuits have any prohibited tags."
   sql         = replace(local.prohibited_sql_resource_group, "__TABLE_NAME__", "azure_express_route_circuit")
   param "prohibited_tags" {
     default = var.prohibited_tags
@@ -592,8 +592,8 @@ control "storage_account_prohibited" {
 }
 
 control "stream_analytics_job_prohibited" {
-  title       = "Stream analytics jobs should not have prohibited tags"
-  description = "Check if Stream analytics jobs have any prohibited tags."
+  title       = "Stream Analytics jobs should not have prohibited tags"
+  description = "Check if Stream Analytics jobs have any prohibited tags."
   sql         = replace(local.prohibited_sql_resource_group, "__TABLE_NAME__", "azure_stream_analytics_job")
   param "prohibited_tags" {
     default = var.prohibited_tags

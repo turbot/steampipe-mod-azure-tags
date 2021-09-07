@@ -101,8 +101,8 @@ benchmark "mandatory" {
 }
 
 control "api_management_mandatory" {
-  title       = "API managements should have mandatory tags"
-  description = "Check if API managements have mandatory tags."
+  title       = "API Management services should have mandatory tags"
+  description = "Check if API Management services have mandatory tags."
   sql         = replace(local.mandatory_sql_resource_group, "__TABLE_NAME__", "azure_api_management")
   param "mandatory_tags" {
     default = var.mandatory_tags
@@ -110,8 +110,8 @@ control "api_management_mandatory" {
 }
 
 control "app_service_environment_mandatory" {
-  title       = "App service environments should have mandatory tags"
-  description = "Check if App service environments have mandatory tags."
+  title       = "App Service environments should have mandatory tags"
+  description = "Check if App Service environments have mandatory tags."
   sql         = replace(local.mandatory_sql_resource_group, "__TABLE_NAME__", "azure_app_service_environment")
   param "mandatory_tags" {
     default = var.mandatory_tags
@@ -119,8 +119,8 @@ control "app_service_environment_mandatory" {
 }
 
 control "app_service_function_app_mandatory" {
-  title       = "App service function apps should have mandatory tags"
-  description = "Check if App service function apps have mandatory tags."
+  title       = "App Service function apps should have mandatory tags"
+  description = "Check if App Service function apps have mandatory tags."
   sql         = replace(local.mandatory_sql_resource_group, "__TABLE_NAME__", "azure_app_service_function_app")
   param "mandatory_tags" {
     default = var.mandatory_tags
@@ -128,8 +128,8 @@ control "app_service_function_app_mandatory" {
 }
 
 control "app_service_plan_mandatory" {
-  title       = "App service plans should have mandatory tags"
-  description = "Check if App service plans have mandatory tags."
+  title       = "App Service plans should have mandatory tags"
+  description = "Check if App Service plans have mandatory tags."
   sql         = replace(local.mandatory_sql_resource_group, "__TABLE_NAME__", "azure_app_service_plan")
   param "mandatory_tags" {
     default = var.mandatory_tags
@@ -137,8 +137,8 @@ control "app_service_plan_mandatory" {
 }
 
 control "app_service_web_app_mandatory" {
-  title       = "App service web apps should have mandatory tags"
-  description = "Check if App service web apps have mandatory tags."
+  title       = "App Service web apps should have mandatory tags"
+  description = "Check if App Service web apps have mandatory tags."
   sql         = replace(local.mandatory_sql_resource_group, "__TABLE_NAME__", "azure_app_service_web_app")
   param "mandatory_tags" {
     default = var.mandatory_tags
@@ -299,8 +299,8 @@ control "eventhub_namespace_mandatory" {
 }
 
 control "express_route_circuit_mandatory" {
-  title       = "Express route circuits should have mandatory tags"
-  description = "Check if Express route circuits have mandatory tags."
+  title       = "ExpressRoute circuits should have mandatory tags"
+  description = "Check if ExpressRoute circuits have mandatory tags."
   sql         = replace(local.mandatory_sql_resource_group, "__TABLE_NAME__", "azure_express_route_circuit")
   param "mandatory_tags" {
     default = var.mandatory_tags
@@ -587,8 +587,8 @@ control "storage_account_mandatory" {
 }
 
 control "stream_analytics_job_mandatory" {
-  title       = "Stream analytics jobs should have mandatory tags"
-  description = "Check if Stream analytics jobs have mandatory tags."
+  title       = "Stream Analytics jobs should have mandatory tags"
+  description = "Check if Stream Analytics jobs have mandatory tags."
   sql         = replace(local.mandatory_sql_resource_group, "__TABLE_NAME__", "azure_stream_analytics_job")
   param "mandatory_tags" {
     default = var.mandatory_tags

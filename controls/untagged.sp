@@ -86,32 +86,32 @@ benchmark "untagged" {
 }
 
 control "api_management_untagged" {
-  title       = "API managements should be tagged"
-  description = "Check if API managements have at least 1 tag."
+  title       = "API Management services should be tagged"
+  description = "Check if API Management services have at least 1 tag."
   sql         = replace(local.untagged_sql_resource_group, "__TABLE_NAME__", "azure_api_management")
 }
 
 control "app_service_environment_untagged" {
-  title       = "App service environments should be tagged"
-  description = "Check if App service environments have at least 1 tag."
+  title       = "App Service environments should be tagged"
+  description = "Check if App Service environments have at least 1 tag."
   sql         = replace(local.untagged_sql_resource_group, "__TABLE_NAME__", "azure_app_service_environment")
 }
 
 control "app_service_function_app_untagged" {
-  title       = "App service function apps should be tagged"
-  description = "Check if App service function apps have at least 1 tag."
+  title       = "App Service function apps should be tagged"
+  description = "Check if App Service function apps have at least 1 tag."
   sql         = replace(local.untagged_sql_resource_group, "__TABLE_NAME__", "azure_app_service_function_app")
 }
 
 control "app_service_plan_untagged" {
-  title       = "App service plans should be tagged"
-  description = "Check if App service plans have at least 1 tag."
+  title       = "App Service plans should be tagged"
+  description = "Check if App Service plans have at least 1 tag."
   sql         = replace(local.untagged_sql_resource_group, "__TABLE_NAME__", "azure_app_service_plan")
 }
 
 control "app_service_web_app_untagged" {
-  title       = "App service web apps should be tagged"
-  description = "Check if App service web apps have at least 1 tag."
+  title       = "App Service web apps should be tagged"
+  description = "Check if App Service web apps have at least 1 tag."
   sql         = replace(local.untagged_sql_resource_group, "__TABLE_NAME__", "azure_app_service_web_app")
 }
 
@@ -218,8 +218,8 @@ control "eventhub_namespace_untagged" {
 }
 
 control "express_route_circuit_untagged" {
-  title       = "Express route circuits should be tagged"
-  description = "Check if Express route circuits have at least 1 tag."
+  title       = "ExpressRoute circuits should be tagged"
+  description = "Check if ExpressRoute circuits have at least 1 tag."
   sql         = replace(local.untagged_sql_resource_group, "__TABLE_NAME__", "azure_express_route_circuit")
 }
 
@@ -410,8 +410,8 @@ control "storage_account_untagged" {
 }
 
 control "stream_analytics_job_untagged" {
-  title       = "Stream analytics jobs should be tagged"
-  description = "Check if Stream analytics jobs have at least 1 tag."
+  title       = "Stream Analytics jobs should be tagged"
+  description = "Check if Stream Analytics jobs have at least 1 tag."
   sql         = replace(local.untagged_sql_resource_group, "__TABLE_NAME__", "azure_stream_analytics_job")
 }
 
