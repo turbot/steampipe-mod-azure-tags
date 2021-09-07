@@ -531,7 +531,7 @@ control "redis_cache_prohibited" {
 control "resource_group_prohibited" {
   title       = "Resource groups should not have prohibited tags"
   description = "Check if Resource groups have any prohibited tags."
-  sql         = replace(local.prohibited_sql_resource_group, "__TABLE_NAME__", "azure_resource_group")
+  sql         = replace(local.prohibited_sql_subscription, "__TABLE_NAME__", "azure_resource_group")
   param "prohibited_tags" {
     default = var.prohibited_tags
   }

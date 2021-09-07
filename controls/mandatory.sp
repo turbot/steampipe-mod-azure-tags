@@ -526,7 +526,7 @@ control "redis_cache_mandatory" {
 control "resource_group_mandatory" {
   title       = "Resource groups should have mandatory tags"
   description = "Check if Resource groups have mandatory tags."
-  sql         = replace(local.mandatory_sql_resource_group, "__TABLE_NAME__", "azure_resource_group")
+  sql         = replace(local.mandatory_sql_subscription, "__TABLE_NAME__", "azure_resource_group")
   param "mandatory_tags" {
     default = var.mandatory_tags
   }

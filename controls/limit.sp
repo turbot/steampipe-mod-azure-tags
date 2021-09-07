@@ -522,7 +522,7 @@ control "redis_cache_tag_limit" {
 control "resource_group_tag_limit" {
   title       = "Resource groups should not exceed tag limit"
   description = "Check if the number of tags on Resource groups do not exceed the limit."
-  sql         = replace(local.limit_sql_resource_group, "__TABLE_NAME__", "azure_resource_group")
+  sql         = replace(local.limit_sql_subscription, "__TABLE_NAME__", "azure_resource_group")
   param "tag_limit" {
     default = var.tag_limit
   }

@@ -370,7 +370,7 @@ control "redis_cache_untagged" {
 control "resource_group_untagged" {
   title       = "Resource groups should be tagged"
   description = "Check if Resource groups have at least 1 tag."
-  sql         = replace(local.untagged_sql_resource_group, "__TABLE_NAME__", "azure_resource_group")
+  sql         = replace(local.untagged_sql_subscription, "__TABLE_NAME__", "azure_resource_group")
 }
 
 control "route_table_untagged" {
