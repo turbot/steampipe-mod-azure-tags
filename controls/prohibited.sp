@@ -1,10 +1,11 @@
 variable "prohibited_tags" {
   type        = list(string)
   description = "A list of prohibited tags to check for."
+  default     = ["Password", "Key"]
 }
 
 locals {
-  prohibited_sql = <<EOT
+  prohibited_sql = <<-EOT
     with analysis as (
       select
         id,
