@@ -104,6 +104,10 @@ benchmark "prohibited" {
     control.virtual_network_prohibited,
     control.virtual_network_gateway_prohibited
   ]
+
+  tags = merge(local.azure_tags_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "api_management_prohibited" {

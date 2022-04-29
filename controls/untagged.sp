@@ -83,6 +83,10 @@ benchmark "untagged" {
     control.virtual_network_untagged,
     control.virtual_network_gateway_untagged
   ]
+  
+  tags = merge(local.azure_tags_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "api_management_untagged" {
