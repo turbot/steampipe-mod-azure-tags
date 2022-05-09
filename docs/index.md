@@ -6,9 +6,9 @@ repository: "https://github.com/turbot/steampipe-mod-azure-tags"
 
 Run tagging controls across all your Azure subscriptions to look for untagged resources, missing tags, resources with too many tags, and more.
 
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_mod_terminal.png)
-<TO-DO>
-<TO-DO>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/add-benchmark-screenshots/docs/azure_tags_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/add-benchmark-screenshots/docs/azure_tags_untagged_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_mod_terminal.png" width="50%" type="thumbnail"/>
 
 ## References
 
@@ -92,11 +92,11 @@ Several benchmarks have [input variables](https://steampipe.io/docs/using-steamp
 
 - Copy and rename the `steampipe.spvars.example` file to `steampipe.spvars`, and then modify the variable values inside that file
 - Pass in a value on the command line:
-  ```shell
+  ```sh
   steampipe check benchmark.mandatory --var 'mandatory_tags=["Application", "Environment", "Department", "Owner"]'
   ```
 - Set an environment variable:
-  ```shell
+  ```sh
   SP_VAR_mandatory_tags='["Application", "Environment", "Department", "Owner"]' steampipe check control.compute_virtual_machine_mandatory
   ```
   - Note: When using environment variables, if the variable is defined in `steampipe.spvars` or passed in through the command line, either of those will take precedence over the environment variable value. For more information on variable definition precedence, please see the link below.
