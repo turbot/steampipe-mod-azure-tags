@@ -6,8 +6,8 @@ repository: "https://github.com/turbot/steampipe-mod-azure-tags"
 
 Run tagging controls across all your Azure subscriptions to look for untagged resources, missing tags, resources with too many tags, and more.
 
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/add-benchmark-screenshots/docs/azure_tags_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/add-benchmark-screenshots/docs/azure_tags_untagged_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_untagged_dashboard.png" width="50%" type="thumbnail"/>
 <img src="https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_mod_terminal.png" width="50%" type="thumbnail"/>
 
 ## References
