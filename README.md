@@ -19,6 +19,7 @@ Download and install Steampipe (https://steampipe.io/downloads). Or use Brew:
 ```sh
 brew tap turbot/tap
 brew install steampipe
+```
 
 Install the Azure plugin with [Steampipe](https://steampipe.io):
 
