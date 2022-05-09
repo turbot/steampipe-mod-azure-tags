@@ -7,6 +7,8 @@ repository: "https://github.com/turbot/steampipe-mod-azure-tags"
 Run tagging controls across all your Azure subscriptions to look for untagged resources, missing tags, resources with too many tags, and more.
 
 ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_mod_terminal.png)
+<TO-DO>
+<TO-DO>
 
 ## References
 
@@ -24,12 +26,21 @@ Run tagging controls across all your Azure subscriptions to look for untagged re
 
 ### Installation
 
-1) Install the Azure plugin:
-```shell
+Download and install Steampipe (https://steampipe.io/downloads). Or use Brew:
+
+```sh
+brew tap turbot/tap
+brew install steampipe
+```
+
+Install the Azure plugin with [Steampipe](https://steampipe.io):
+
+```sh
 steampipe plugin install azure
 ```
 
-2) Clone this repo:
+Clone:
+
 ```sh
 git clone https://github.com/turbot/steampipe-mod-azure-tags.git
 cd steampipe-mod-azure-tags
@@ -37,39 +48,39 @@ cd steampipe-mod-azure-tags
 
 ### Usage
 
-#### Running benchmarks
+Start your dashboard server to get started:
 
-Preview running all benchmarks:
-```shell
-steampipe check all --dry-run
+```sh
+steampipe dashboard
 ```
 
+By default, the dashboard interface will then be launched in a new browser
+window at https://localhost:9194. From here, you can run benchmarks by
+selecting one or searching for a specific one.
+
+Instead of running benchmarks in a dashboard, you can also run them within your
+terminal with the `steampipe check` command:
+
 Run all benchmarks:
-```shell
+
+```sh
 steampipe check all
 ```
 
-Use Steampipe introspection to view all current benchmarks:
-```shell
-steampipe query "select resource_name, title, description from steampipe_benchmark;"
-```
+Run a single benchmark:
 
-Run an individual benchmark:
-```shell
+```sh
 steampipe check benchmark.untagged
 ```
 
-#### Running controls
-
-Use Steampipe introspection to view all current controls:
-```shell
-steampipe query "select resource_name, title, description from steampipe_control;"
-```
-
 Run a specific control:
-```shell
+
+```sh
 steampipe check control.compute_virtual_machine_untagged
 ```
+
+Different output formats are also available, for more information please see
+[Output Formats](https://steampipe.io/docs/reference/cli/check#output-formats).
 
 ### Credentials
 
@@ -135,8 +146,15 @@ done <<< "$INPUT"
 IFS=$OLDIFS
 ```
 
-## Get involved
+## Contributing
 
-* Contribute: [GitHub Repo](https://github.com/turbot/steampipe-mod-azure-tags)
+If you have an idea for additional controls or just want to help maintain and extend this mod ([or others](https://github.com/topics/steampipe-mod)) we would love you to join the community and start contributing.
 
-* Community: [Slack Channel](https://join.slack.com/t/steampipe/shared_invite/zt-oij778tv-lYyRTWOTMQYBVAbtPSWs3g)
+- **[Join our Slack community →](https://steampipe.io/community/join)** and hang out with other Mod developers.
+
+Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-mod-azure-tags/blob/main/LICENSE).
+
+Want to help but not sure where to start? Pick up one of the `help wanted` issues:
+
+- [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
+- [Azure Tags Mod](https://github.com/turbot/steampipe-mod-azure-tags/labels/help%20wanted)
