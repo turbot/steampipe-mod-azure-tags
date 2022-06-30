@@ -1,4 +1,4 @@
-# Azure Tags Tool
+# Azure Tags Mod for Steampipe
 
 An Azure tags checking tool that can be used to look for untagged resources, missing tags, resources with too many tags, and more.
 
