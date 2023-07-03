@@ -45,12 +45,12 @@ benchmark "limit" {
     control.application_security_group_tag_limit,
     control.batch_account_tag_limit,
     control.compute_availability_set_tag_limit,
-    control.compute_disk_tag_limit,
     control.compute_disk_encryption_set_tag_limit,
+    control.compute_disk_tag_limit,
     control.compute_image_tag_limit,
     control.compute_snapshot_tag_limit,
-    control.compute_virtual_machine_tag_limit,
     control.compute_virtual_machine_scale_set_tag_limit,
+    control.compute_virtual_machine_tag_limit,
     control.container_registry_tag_limit,
     control.cosmosdb_account_tag_limit,
     control.cosmosdb_mongo_database_tag_limit,
@@ -62,11 +62,11 @@ benchmark "limit" {
     control.express_route_circuit_tag_limit,
     control.firewall_tag_limit,
     control.iothub_tag_limit,
-    control.key_vault_tag_limit,
     control.key_vault_deleted_vault_tag_limit,
     control.key_vault_key_tag_limit,
     control.key_vault_managed_hardware_security_module_tag_limit,
     control.key_vault_secret_tag_limit,
+    control.key_vault_tag_limit,
     control.kubernetes_cluster_tag_limit,
     control.lb_tag_limit,
     control.log_alert_tag_limit,
@@ -78,8 +78,8 @@ benchmark "limit" {
     control.mysql_server_tag_limit,
     control.network_interface_tag_limit,
     control.network_security_group_tag_limit,
-    control.network_watcher_tag_limit,
     control.network_watcher_flow_log_tag_limit,
+    control.network_watcher_tag_limit,
     control.postgresql_server_tag_limit,
     control.public_ip_tag_limit,
     control.recovery_services_vault_tag_limit,
@@ -92,8 +92,8 @@ benchmark "limit" {
     control.sql_server_tag_limit,
     control.storage_account_tag_limit,
     control.stream_analytics_job_tag_limit,
-    control.virtual_network_tag_limit,
-    control.virtual_network_gateway_tag_limit
+    control.virtual_network_gateway_tag_limit,
+    control.virtual_network_tag_limit
   ]
 
   tags = merge(local.azure_tags_common_tags, {
