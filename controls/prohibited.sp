@@ -54,8 +54,8 @@ benchmark "prohibited" {
     control.application_security_group_prohibited,
     control.batch_account_prohibited,
     control.compute_availability_set_prohibited,
-    control.compute_disk_prohibited,
     control.compute_disk_encryption_set_prohibited,
+    control.compute_disk_prohibited,
     control.compute_image_prohibited,
     control.compute_snapshot_prohibited,
     control.compute_virtual_machine_prohibited,
@@ -71,10 +71,10 @@ benchmark "prohibited" {
     control.express_route_circuit_prohibited,
     control.firewall_prohibited,
     control.iothub_prohibited,
-    control.key_vault_prohibited,
     control.key_vault_deleted_vault_prohibited,
     control.key_vault_key_prohibited,
     control.key_vault_managed_hardware_security_module_prohibited,
+    control.key_vault_prohibited,
     control.key_vault_secret_prohibited,
     control.kubernetes_cluster_prohibited,
     control.lb_prohibited,
@@ -87,8 +87,8 @@ benchmark "prohibited" {
     control.mysql_server_prohibited,
     control.network_interface_prohibited,
     control.network_security_group_prohibited,
-    control.network_watcher_prohibited,
     control.network_watcher_flow_log_prohibited,
+    control.network_watcher_prohibited,
     control.postgresql_server_prohibited,
     control.public_ip_prohibited,
     control.recovery_services_vault_prohibited,
@@ -101,8 +101,8 @@ benchmark "prohibited" {
     control.sql_server_prohibited,
     control.storage_account_prohibited,
     control.stream_analytics_job_prohibited,
-    control.virtual_network_prohibited,
-    control.virtual_network_gateway_prohibited
+    control.virtual_network_gateway_prohibited,
+    control.virtual_network_prohibited
   ]
 
   tags = merge(local.azure_tags_common_tags, {

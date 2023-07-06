@@ -33,12 +33,12 @@ benchmark "untagged" {
     control.application_security_group_untagged,
     control.batch_account_untagged,
     control.compute_availability_set_untagged,
-    control.compute_disk_untagged,
     control.compute_disk_encryption_set_untagged,
+    control.compute_disk_untagged,
     control.compute_image_untagged,
     control.compute_snapshot_untagged,
-    control.compute_virtual_machine_untagged,
     control.compute_virtual_machine_scale_set_untagged,
+    control.compute_virtual_machine_untagged,
     control.container_registry_untagged,
     control.cosmosdb_account_untagged,
     control.cosmosdb_mongo_database_untagged,
@@ -50,11 +50,11 @@ benchmark "untagged" {
     control.express_route_circuit_untagged,
     control.firewall_untagged,
     control.iothub_untagged,
-    control.key_vault_untagged,
     control.key_vault_deleted_vault_untagged,
     control.key_vault_key_untagged,
     control.key_vault_managed_hardware_security_module_untagged,
     control.key_vault_secret_untagged,
+    control.key_vault_untagged,
     control.kubernetes_cluster_untagged,
     control.lb_untagged,
     control.log_alert_untagged,
@@ -66,8 +66,8 @@ benchmark "untagged" {
     control.mysql_server_untagged,
     control.network_interface_untagged,
     control.network_security_group_untagged,
-    control.network_watcher_untagged,
     control.network_watcher_flow_log_untagged,
+    control.network_watcher_untagged,
     control.postgresql_server_untagged,
     control.public_ip_untagged,
     control.recovery_services_vault_untagged,
@@ -80,8 +80,8 @@ benchmark "untagged" {
     control.sql_server_untagged,
     control.storage_account_untagged,
     control.stream_analytics_job_untagged,
-    control.virtual_network_untagged,
-    control.virtual_network_gateway_untagged
+    control.virtual_network_gateway_untagged,
+    control.virtual_network_untagged
   ]
   
   tags = merge(local.azure_tags_common_tags, {
