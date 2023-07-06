@@ -17,8 +17,8 @@ mod "azure_tags" {
   categories    = ["azure", "tags", "public cloud"]
 
   opengraph {
-    title        = "Steampipe Mod for Azure Tags"
-    description  = "Run tagging controls across all your Azure subscriptions using Steampipe."
-    image        = "/images/mods/turbot/azure-tags-social-graphic.png"
+    title       = "Steampipe Mod for Azure Tags"
+    description = "Run tagging controls across all your Azure subscriptions using Steampipe."
+    image       = "/images/mods/turbot/azure-tags-social-graphic.png"
   }
 }

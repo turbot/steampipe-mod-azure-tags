@@ -49,8 +49,8 @@ benchmark "mandatory" {
     control.application_security_group_mandatory,
     control.batch_account_mandatory,
     control.compute_availability_set_mandatory,
-    control.compute_disk_mandatory,
     control.compute_disk_encryption_set_mandatory,
+    control.compute_disk_mandatory,
     control.compute_image_mandatory,
     control.compute_snapshot_mandatory,
     control.compute_virtual_machine_mandatory,
@@ -66,10 +66,10 @@ benchmark "mandatory" {
     control.express_route_circuit_mandatory,
     control.firewall_mandatory,
     control.iothub_mandatory,
-    control.key_vault_mandatory,
     control.key_vault_deleted_vault_mandatory,
     control.key_vault_key_mandatory,
     control.key_vault_managed_hardware_security_module_mandatory,
+    control.key_vault_mandatory,
     control.key_vault_secret_mandatory,
     control.kubernetes_cluster_mandatory,
     control.lb_mandatory,
@@ -82,8 +82,8 @@ benchmark "mandatory" {
     control.mysql_server_mandatory,
     control.network_interface_mandatory,
     control.network_security_group_mandatory,
-    control.network_watcher_mandatory,
     control.network_watcher_flow_log_mandatory,
+    control.network_watcher_mandatory,
     control.postgresql_server_mandatory,
     control.public_ip_mandatory,
     control.recovery_services_vault_mandatory,
@@ -96,8 +96,8 @@ benchmark "mandatory" {
     control.sql_server_mandatory,
     control.storage_account_mandatory,
     control.stream_analytics_job_mandatory,
-    control.virtual_network_mandatory,
-    control.virtual_network_gateway_mandatory
+    control.virtual_network_gateway_mandatory,
+    control.virtual_network_mandatory
   ]
 
   tags = merge(local.azure_tags_common_tags, {

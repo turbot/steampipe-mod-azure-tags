@@ -1,3 +1,9 @@
+## v0.6 [2023-07-06]
+
+_What's new?_
+
+- Added the Expected Tag Values benchmark (`steampipe check benchmark.expected_tag_values`), which allows users to check if tags with specific keys are using allowed values. ([#24](https://github.com/turbot/steampipe-mod-azure-tags/pull/24))
+
 ## v0.5 [2022-05-09]
 
 _Enhancements_
