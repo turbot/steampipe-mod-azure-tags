@@ -1,19 +1,19 @@
 locals {
-  untagged_sql = <<EOT
+  untagged_sql = <<EOQ
     select
       id as resource,
       case
-        when tags is not null then 'ok'
+        when tags is not null or tags != '{}' then 'ok'
         else 'alarm'
       end as status,
       case
-        when tags is not null then title || ' has tags.'
+        when tags is not null or tags != '{}' then title || ' has tags.'
         else title || ' has no tags.'
       end as reason,
       __DIMENSIONS__
     from
-      __TABLE_NAME__
-  EOT
+      __TABLE_NAME__;
+  EOQ
 }
 
 locals {

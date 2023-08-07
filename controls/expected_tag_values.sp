@@ -112,7 +112,7 @@ locals {
       __TABLE_NAME__
     where
       $1::text = '{}'
-      and tags::text <> '{}'
+      and tags::text <> '{}';
   EOQ
 }
 
