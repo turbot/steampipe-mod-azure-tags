@@ -5,7 +5,7 @@ variable "mandatory_tags" {
 }
 
 locals {
-  mandatory_sql = <<-EOT
+  mandatory_sql = <<-EOQ
     with analysis as (
       select
         id,
@@ -28,8 +28,8 @@ locals {
       end as reason,
       __DIMENSIONS__
     from
-      analysis
-  EOT
+      analysis;
+  EOQ
 }
 
 locals {

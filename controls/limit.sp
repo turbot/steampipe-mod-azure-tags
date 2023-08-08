@@ -5,7 +5,7 @@ variable "tag_limit" {
 }
 
 locals {
-  limit_sql = <<-EOT
+  limit_sql = <<-EOQ
     with analysis as (
       select
         id,
@@ -24,8 +24,8 @@ locals {
       title || ' has ' || num_tag_keys || ' tag(s).' as reason,
       __DIMENSIONS__
     from
-      analysis
-  EOT
+      analysis;
+  EOQ
 }
 
 locals {

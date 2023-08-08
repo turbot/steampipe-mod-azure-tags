@@ -21,6 +21,7 @@ locals {
         __TABLE_NAME__
       where
         tags::text <> '{}'
+        or tags is not null
     ),
     exploded_expected_tag_values as
     (
@@ -102,6 +103,7 @@ locals {
       __TABLE_NAME__
     where
       tags::text = '{}'
+      or tags is null
     union all
     select
       id as resource,
@@ -113,6 +115,7 @@ locals {
     where
       $1::text = '{}'
       and tags::text <> '{}'
+      or tags is not null;
   EOQ
 }
 

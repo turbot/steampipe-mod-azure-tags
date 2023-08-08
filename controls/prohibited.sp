@@ -5,7 +5,7 @@ variable "prohibited_tags" {
 }
 
 locals {
-  prohibited_sql = <<-EOT
+  prohibited_sql = <<-EOQ
     with analysis as (
       select
         id,
@@ -33,8 +33,8 @@ locals {
     from
       __TABLE_NAME__ as r
     full outer join
-      analysis as a on a.id = r.id
-  EOT
+      analysis as a on a.id = r.id;
+  EOQ
 }
 
 locals {
