@@ -3,11 +3,11 @@ locals {
     select
       id as resource,
       case
-        when tags is not null or tags != '{}' then 'ok'
+        when tags is not null or tags::text <> '{}' then 'ok'
         else 'alarm'
       end as status,
       case
-        when tags is not null or tags != '{}' then title || ' has tags.'
+        when tags is not null or tags::text <> '{}' then title || ' has tags.'
         else title || ' has no tags.'
       end as reason,
       __DIMENSIONS__
