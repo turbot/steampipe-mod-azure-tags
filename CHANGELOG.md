@@ -2,7 +2,7 @@
 
 _Bug fixes_
 
-- Fixed the `untagged` and `expected_tag_values` benchmarks to correctly check if resources have tags or not. ([#28](https://github.com/turbot/steampipe-mod-azure-tags/pull/28))
+- Fixed the `expected_tag_values` and `untagged` benchmarks to correctly check if resources have tags or not. ([#28](https://github.com/turbot/steampipe-mod-azure-tags/pull/28))
 
 ## v0.6 [2023-07-06]
 
