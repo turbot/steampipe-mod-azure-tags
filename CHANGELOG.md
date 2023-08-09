@@ -1,3 +1,9 @@
+## v0.7 [2023-07-09]
+
+_Bug fixes_
+
+- Fixed the `expected_tag_values` and `untagged` benchmarks to correctly check if resources have tags or not. ([#28](https://github.com/turbot/steampipe-mod-azure-tags/pull/28))
+
 ## v0.6 [2023-07-06]
 
 _What's new?_
