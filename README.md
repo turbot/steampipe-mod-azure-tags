@@ -13,6 +13,10 @@ Or in a terminal:
 
 ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_mod_terminal.png)
 
+## Documentation
+
+- **[Benchmarks and controls →](https://hub.powerpipe.io/mods/turbot/azure_tags/controls)**
+
 ## Getting Started
 
 ### Installation
