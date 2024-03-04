@@ -7,11 +7,13 @@ An Azure tags checking tool that can be used to look for untagged resources, mis
 
 Run checks in a dashboard:
 
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_dashboard.png)
+<!-- ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_dashboard.png) -->
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/add-new-checks/docs/azure_tags_dashboard.png)
 
 Or in a terminal:
 
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_mod_terminal.png)
+<!-- ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_mod_terminal.png) -->
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/add-new-checks/docs/azure_tags_mod_terminal.png)
 
 ## Documentation
 
@@ -42,7 +44,7 @@ Finally, install the mod:
 mkdir dashboards
 cd dashboards
 powerpipe mod init
-powerpipe mod install github.com/turbot/powerpipe-mod-azure-tags
+powerpipe mod install github.com/turbot/steampipe-mod-azure-tags
 ```
 
 ### Browsing Dashboards
@@ -59,7 +61,7 @@ Start the dashboard server:
 powerpipe server
 ```
 
-Browse and view your dashboards at **https://localhost:9033**.
+Browse and view your dashboards at **http://localhost:9033**.
 
 ### Running Checks in Your Terminal
 
@@ -105,7 +107,9 @@ export PP_VAR_mandatory_tags='["Application", "Environment", "Department"]'
 powerpipe benchmark run azure_tags.benchmark.mandatory
 ```
 
-These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://steampipe.io/docs/using-steampipe/mod-variables#passing-input-variables).
+  - Note: When using environment variables, if the variable is defined in `powerpipe.ppvars` or passed in through the command line, either of those will take precedence over the environment variable value. For more information on variable definition precedence, please see the link below
+
+These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://powerpipe-io/docs/build/mod-variables#passing-input-variables).
 
 ## Open Source & Contributing
 
