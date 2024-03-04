@@ -1,9 +1,3 @@
-variable "tag_limit" {
-  type        = number
-  description = "Number of tags allowed on a resource. Azure allows up to 50 tags per resource."
-  default     = 45
-}
-
 locals {
   limit_sql = <<-EOQ
     with analysis as (

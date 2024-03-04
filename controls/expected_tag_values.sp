@@ -1,12 +1,3 @@
-variable "expected_tag_values" {
-  type        = map(list(string))
-  description = "Map of expected values for various tags, e.g., {\"Environment\": [\"Prod\", \"Staging\", \"Dev%\"]}. SQL wildcards '%' and '_' can be used for matching values. These characters must be escaped for exact matches, e.g., {\"created_by\": [\"test\\_user\"]}."
-
-  default = {
-    "Environment": ["Dev", "Staging", "Prod"]
-  }
-}
-
 locals {
   expected_tag_values_sql = <<-EOQ
     with raw_data as
