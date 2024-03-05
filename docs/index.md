@@ -79,7 +79,7 @@ Different output formats are also available, for more information please see
 
 ### Configuration
 
-Several benchmarks have [input variables](https://powerpipe.io/docs/build/mod-variables#input-variables) that can be configured to better match your environment and requirements. Each variable has a default defined, but these can be overridden in several ways:
+Several benchmarks have [input variables](https://powerpipe.io/docs/build/mod-variables#input-variables) that can be configured to better match your environment and requirements. Each variable has a default defined in its source file, e.g., controls/limit.sp, but these can be overridden in several ways:
 
 - Copy and rename the `powerpipe.ppvars.example` file to `powerpipe.ppvars`, and then modify the variable values inside that file
 - Pass in a value on the command line:
