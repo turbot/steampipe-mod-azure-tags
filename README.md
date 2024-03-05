@@ -85,31 +85,67 @@ Different output formats are also available, for more information please see
 
 ### Configuration
 
-Several benchmarks have [input variables](https://steampipe.io/docs/using-steampipe/mod-variables) that can be configured to better match your environment and requirements. Each variable has a default defined, but these can be overridden in several ways:
+Several benchmarks have [input variables](https://powerpipe.io/docs/build/mod-variables#input-variables) that can be configured to better match your environment and requirements. Each variable has a default defined, but these can be overridden in several ways:
 
-It's easiest to setup your vars file, starting with the sample:
+- Copy and rename the `powerpipe.ppvars.example` file to `powerpipe.ppvars`, and then modify the variable values inside that file
+- Pass in a value on the command line:
 
-```sh
-cp powerpipe.ppvar.example powerpipe.ppvars
-vi powerpipe.ppvars
-```
+  ```sh
+  powerpipe benchmark run azure_tags.benchmark.mandatory --var 'mandatory_tags=["Application", "Environment", "Department", "Owner"]'
+  ```
 
-Alternatively you can pass variables on the command line:
+- Set an environment variable:
 
-```sh
-powerpipe benchmark run azure_tags.benchmark.mandatory --var 'mandatory_tags=["Application", "Environment", "Department", "Owner"]'
-```
-
-Or through environment variables:
-
-```sh
-export PP_VAR_mandatory_tags='["Application", "Environment", "Department"]'
-powerpipe benchmark run azure_tags.benchmark.mandatory
-```
+  ```sh
+  export PP_VAR_mandatory_tags='["Application", "Environment", "Department"]'
+  powerpipe benchmark run azure_tags.benchmark.mandatory
+  ```
 
   - Note: When using environment variables, if the variable is defined in `powerpipe.ppvars` or passed in through the command line, either of those will take precedence over the environment variable value. For more information on variable definition precedence, please see the link below
 
-These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://powerpipe-io/docs/build/mod-variables#passing-input-variables).
+These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://powerpipe.io/docs/build/mod-variables#passing-input-variables).
+
+### Remediation
+
+Using the control output and the Azure CLI, you can remediate various tagging issues.
+
+For instance, with the results of the `compute_virtual_machine_mandatory` control, you can add missing tags with the Azure CLI:
+
+```sh
+#!/bin/bash
+
+OLDIFS=$IFS
+IFS='#'
+
+INPUT=$(powerpipe control run compute_virtual_machine_mandatory --var 'mandatory_tags=["Application"]' --output csv --header=false --separator '#' | grep 'alarm')
+[ -z "$INPUT" ] && { echo "No virtual machines in alarm, aborting"; exit 0; }
+
+while read -r group_id title description control_id control_title control_description reason resource status resource_group subscription
+do
+  az tag create --resource-id ${resource} --tags Application=MyApplication
+done <<< "$INPUT"
+
+IFS=$OLDIFS
+```
+
+To remove prohibited tags from Compute virtual machines:
+```sh
+#!/bin/bash
+
+OLDIFS=$IFS
+IFS='#'
+
+INPUT=$(powerpipe control run compute_virtual_machine_prohibited --var 'prohibited_tags=["Password"]' --output csv --header=false --separator '#' | grep 'alarm')
+[ -z "$INPUT" ] && { echo "No virtual machines in alarm, aborting"; exit 0; }
+
+while read -r group_id title description control_id control_title control_description reason resource status resource_group subscription
+do
+  az tag delete --resource-id ${resource} --name Password --yes
+done <<< "$INPUT"
+
+IFS=$OLDIFS
+```
+
 
 ## Open Source & Contributing
 
