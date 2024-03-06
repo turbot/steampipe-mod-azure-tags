@@ -1,4 +1,9 @@
-# Azure Tags Mod for Steampipe
+# Azure Tags Mod for Powerpipe
+
+> [!IMPORTANT]
+> [Powerpipe](https://powerpipe.io) is now the preferred way to run this mod! [Migrating from Steampipe →](https://powerpipe.io/blog/migrating-from-steampipe)
+>
+> All v0.x versions of this mod will work in both Steampipe and Powerpipe, but v1.0.0 onwards will be in Powerpipe format only.
 
 An Azure tags checking tool that can be used to look for untagged resources, missing tags, resources with too many tags, and more.
 
@@ -10,88 +15,99 @@ Or in a terminal:
 
 ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-azure-tags/main/docs/azure_tags_mod_terminal.png)
 
-## Getting started
+## Documentation
+
+- **[Benchmarks and controls →](https://hub.powerpipe.io/mods/turbot/azure_tags/controls)**
+
+## Getting Started
 
 ### Installation
 
-Download and install Steampipe (https://steampipe.io/downloads). Or use Brew:
+Install Powerpipe (https://powerpipe.io/downloads), or use Brew:
 
 ```sh
-brew tap turbot/tap
-brew install steampipe
+brew install turbot/tap/powerpipe
 ```
 
-Install the Azure plugin with [Steampipe](https://steampipe.io):
+This mod also requires [Steampipe](https://steampipe.io) with the [Azure plugin](https://hub.steampipe.io/plugins/turbot/azure) as the data source. Install Steampipe (https://steampipe.io/downloads), or use Brew:
 
 ```sh
+brew install turbot/tap/steampipe
 steampipe plugin install azure
 ```
 
-Clone:
+Steampipe will automatically use your default Azure and Azure Active Directory credentials. Optionally, you can [setup multiple subscriptions](https://hub.steampipe.io/plugins/turbot/azure#multi-subscription-connections) for Azure or [customize Azure credentials](https://hub.steampipe.io/plugins/turbot/azure#configuring-azure-credentials).
+
+Finally, install the mod:
 
 ```sh
-git clone https://github.com/turbot/steampipe-mod-azure-tags.git
-cd steampipe-mod-azure-tags
+mkdir dashboards
+cd dashboards
+powerpipe mod init
+powerpipe mod install github.com/turbot/steampipe-mod-azure-tags
 ```
 
-### Usage
+### Browsing Dashboards
 
-Start your dashboard server to get started:
+Start Steampipe as the data source:
 
 ```sh
-steampipe dashboard
+steampipe service start
 ```
 
-By default, the dashboard interface will then be launched in a new browser
-window at http://localhost:9194. From here, you can run benchmarks by
-selecting one or searching for a specific one.
+Start the dashboard server:
+
+```sh
+powerpipe server
+```
+
+Browse and view your dashboards at **http://localhost:9033**.
+
+### Running Checks in Your Terminal
 
 Instead of running benchmarks in a dashboard, you can also run them within your
-terminal with the `steampipe check` command:
+terminal with the `powerpipe benchmark` command:
 
-Run all benchmarks:
+List available benchmarks:
 
 ```sh
-steampipe check all
+powerpipe benchmark list
 ```
 
-Run a single benchmark:
+Run a benchmark:
 
 ```sh
-steampipe check benchmark.untagged
-```
-
-Run a specific control:
-
-```sh
-steampipe check control.compute_virtual_machine_untagged
+powerpipe benchmark run azure_tags.benchmark.limit
 ```
 
 Different output formats are also available, for more information please see
-[Output Formats](https://steampipe.io/docs/reference/cli/check#output-formats).
+[Output Formats](https://powerpipe.io/docs/reference/cli/benchmark#output-formats).
 
-### Credentials
+### Configure Variables
 
-This mod uses the credentials configured in the [Steampipe Azure plugin](https://hub.steampipe.io/plugins/turbot/azure).
+Several benchmarks have [input variables](https://powerpipe.io/docs/build/mod-variables#input-variables) that can be configured to better match your environment and requirements. Each variable has a default defined in its source file, e.g., controls/limit.sp, but these can be overridden in several ways:
 
-### Configuration
+It's easiest to setup your vars file, starting with the sample:
 
-Several benchmarks have [input variables](https://steampipe.io/docs/using-steampipe/mod-variables) that can be configured to better match your environment and requirements. Each variable has a default defined in its source file, e.g., `controls/limit.sp`, but these can be overridden in several ways:
+```sh
+cp steampipe.spvars.example steampipe.spvars
+vi steampipe.spvars
+```
 
-- Copy and rename the `steampipe.spvars.example` file to `steampipe.spvars`, and then modify the variable values inside that file
-- Pass in a value on the command line:
-  ```sh
-  steampipe check benchmark.mandatory --var 'mandatory_tags=["Application", "Environment", "Department", "Owner"]'
-  ```
-- Set an environment variable:
-  ```sh
-  SP_VAR_mandatory_tags='["Application", "Environment", "Department", "Owner"]' steampipe check control.compute_virtual_machine_mandatory
-  ```
-  - Note: When using environment variables, if the variable is defined in `steampipe.spvars` or passed in through the command line, either of those will take precedence over the environment variable value. For more information on variable definition precedence, please see the link below.
+Alternatively you can pass variables on the command line:
 
-These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://steampipe.io/docs/using-steampipe/mod-variables#passing-input-variables).
+```sh
+powerpipe benchmark run azure_tags.benchmark.mandatory --var 'mandatory_tags=["Application", "Environment", "Department", "Owner"]'
+```
 
-## Advanced usage
+Or through environment variables:
+
+```sh
+export PP_VAR_mandatory_tags='["Application", "Environment", "Department"]'
+powerpipe benchmark run azure_tags.benchmark.mandatory
+```
+
+These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://powerpipe.io/docs/build/mod-variables#passing-input-variables).
 
 ### Remediation
 
@@ -99,13 +115,13 @@ Using the control output and the Azure CLI, you can remediate various tagging is
 
 For instance, with the results of the `compute_virtual_machine_mandatory` control, you can add missing tags with the Azure CLI:
 
-```bash
+```sh
 #!/bin/bash
 
 OLDIFS=$IFS
 IFS='#'
 
-INPUT=$(steampipe check control.compute_virtual_machine_mandatory --var 'mandatory_tags=["Application"]' --output csv --header=false --separator '#' | grep 'alarm')
+INPUT=$(powerpipe control run compute_virtual_machine_mandatory --var 'mandatory_tags=["Application"]' --output csv --header=false --separator '#' | grep 'alarm')
 [ -z "$INPUT" ] && { echo "No virtual machines in alarm, aborting"; exit 0; }
 
 while read -r group_id title description control_id control_title control_description reason resource status resource_group subscription
@@ -117,13 +133,13 @@ IFS=$OLDIFS
 ```
 
 To remove prohibited tags from Compute virtual machines:
-```bash
+```sh
 #!/bin/bash
 
 OLDIFS=$IFS
 IFS='#'
 
-INPUT=$(steampipe check control.compute_virtual_machine_prohibited --var 'prohibited_tags=["Password"]' --output csv --header=false --separator '#' | grep 'alarm')
+INPUT=$(powerpipe control run compute_virtual_machine_prohibited --var 'prohibited_tags=["Password"]' --output csv --header=false --separator '#' | grep 'alarm')
 [ -z "$INPUT" ] && { echo "No virtual machines in alarm, aborting"; exit 0; }
 
 while read -r group_id title description control_id control_title control_description reason resource status resource_group subscription
@@ -134,15 +150,17 @@ done <<< "$INPUT"
 IFS=$OLDIFS
 ```
 
-## Contributing
+## Open Source & Contributing
 
-If you have an idea for additional controls or just want to help maintain and extend this mod ([or others](https://github.com/topics/steampipe-mod)) we would love you to join the community and start contributing.
+This repository is published under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0). Please see our [code of conduct](https://github.com/turbot/.github/blob/main/CODE_OF_CONDUCT.md). We look forward to collaborating with you!
 
-- **[Join #steampipe on Slack →](https://turbot.com/community/join)** and hang out with other Mod developers.
+[Steampipe](https://steampipe.io) and [Powerpipe](https://powerpipe.io) are products produced from this open source software, exclusively by [Turbot HQ, Inc](https://turbot.com). They are distributed under our commercial terms. Others are allowed to make their own distribution of the software, but cannot use any of the Turbot trademarks, cloud services, etc. You can learn more in our [Open Source FAQ](https://turbot.com/open-source).
 
-Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-mod-azure-tags/blob/main/LICENSE).
+## Get Involved
 
-Want to help but not sure where to start? Pick up one of the `help wanted` issues:
+**[Join #powerpipe on Slack →](https://turbot.com/community/join)**
 
-- [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
+Want to help but don't know where to start? Pick up one of the `help wanted` issues:
+
+- [Powerpipe](https://github.com/turbot/powerpipe/labels/help%20wanted)
 - [Azure Tags Mod](https://github.com/turbot/steampipe-mod-azure-tags/labels/help%20wanted)
