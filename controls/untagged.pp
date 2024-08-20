@@ -370,7 +370,7 @@ control "redis_cache_untagged" {
 control "resource_group_untagged" {
   title       = "Resource groups should be tagged"
   description = "Check if Resource groups have at least 1 tag."
-  sql     = <<-EOQ
+  sql         = <<-EOQ
     select
       id as resource,
       case

@@ -540,7 +540,7 @@ control "redis_cache_prohibited" {
 control "resource_group_prohibited" {
   title       = "Resource groups should not have prohibited tags"
   description = "Check if Resource groups have any prohibited tags."
-  sql     = <<-EOQ
+  sql         = <<-EOQ
       with analysis as (
       select
         id,
