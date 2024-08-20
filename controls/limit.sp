@@ -527,7 +527,7 @@ control "resource_group_tag_limit" {
   title       = "Resource groups should not exceed tag limit"
   description = "Check if the number of tags on Resource groups do not exceed the limit."
   sql         = <<-EOQ
-        with analysis as (
+    with analysis as (
       select
         id,
         title,
