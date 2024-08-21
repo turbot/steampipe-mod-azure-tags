@@ -12,6 +12,7 @@ locals {
         title,
         cardinality(array(select jsonb_object_keys(tags))) as num_tag_keys,
         _ctx,
+        tags,
         resource_group,
         subscription_id,
         region
@@ -534,6 +535,7 @@ control "resource_group_tag_limit" {
         cardinality(array(select jsonb_object_keys(tags))) as num_tag_keys,
         _ctx,
         name,
+        tags,
         subscription_id,
         region
       from

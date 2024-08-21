@@ -35,6 +35,7 @@ locals {
         jsonb_array_elements_text((expected_tag_values ->> 'value')::jsonb) as expected_values,
         tags ->> (expected_tag_values ->> 'key') as current_value,
         _ctx,
+        tags,
         resource_group,
         subscription_id,
         region
@@ -53,6 +54,7 @@ locals {
         end as has_no_matching_tags,
         tag_key,
         current_value,
+        tags,
         _ctx,
         resource_group,
         subscription_id,
@@ -74,6 +76,7 @@ locals {
         bool_or(has_no_matching_tags) as can_skip,
         current_value,
         _ctx,
+        tags,
         resource_group,
         subscription_id,
         region
@@ -87,7 +90,8 @@ locals {
         _ctx,
         resource_group,
         subscription_id,
-        region
+        region,
+        tags
     )
     select
       id as resource,
@@ -111,7 +115,8 @@ locals {
       _ctx,
       resource_group,
       subscription_id,
-      region
+      region,
+      tags
     union all
     select
       id as resource,

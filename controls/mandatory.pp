@@ -15,6 +15,7 @@ locals {
         _ctx,
         resource_group,
         subscription_id,
+        tags,
         region
       from
         __TABLE_NAME__
@@ -539,6 +540,7 @@ control "resource_group_mandatory" {
         to_jsonb($1) - array(select jsonb_object_keys(tags)) as missing_tags,
         _ctx,
         name,
+        tags,
         subscription_id,
         region
       from
@@ -557,6 +559,7 @@ control "resource_group_mandatory" {
       _ctx,
       name,
       subscription_id,
+      tags,
       region  
     from
       analysis;
