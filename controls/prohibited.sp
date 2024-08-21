@@ -13,6 +13,7 @@ locals {
         _ctx,
         resource_group,
         subscription_id,
+        tags,
         region
       from
         __TABLE_NAME__,
@@ -24,6 +25,7 @@ locals {
         id,
         _ctx,
         resource_group,
+        tags,
         subscription_id,
         region
     )
