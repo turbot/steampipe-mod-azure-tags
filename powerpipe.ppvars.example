@@ -1,4 +1,4 @@
-common_dimensions = ["resource_group", "subscription_id", "region", "connection_name"]
+common_dimensions = ["resource_group", "subscription_id", "region"]
 tag_dimensions    = []
 
 mandatory_tags = ["Environment", "Owner"]

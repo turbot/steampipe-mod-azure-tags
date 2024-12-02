@@ -145,6 +145,32 @@ done <<< "$INPUT"
 IFS=$OLDIFS
 ```
 
+### Common and Tag Dimensions
+
+The benchmark queries use common properties (like `connection_name`, `region`, `resource_group` and `subscription_id`) and tags that are defined in the form of a default list of strings in the `mod.sp` file. These properties can be overwritten in several ways:
+
+
+- Copy and rename the `steampipe.spvars.example` file to `steampipe.spvars`, and then modify the variable values inside that file
+- Pass in a value on the command line:
+
+  ```shell
+  steampipe check benchmark.limit --var 'common_dimensions=["connection_name", "region", "resource_group", "subscription_id"]'
+  ```
+
+  ```shell
+  steampipe check benchmark.limit --var 'tag_dimensions=["Environment", "Owner"]'
+  ```
+
+  - Set an environment variable:
+
+  ```shell
+  SP_VAR_common_dimensions='["connection_name", "region", "resource_group","subscription_id"]' steampipe check control.compute_disk_tag_limit
+  ```
+
+  ```shell
+  SP_VAR_tag_dimensions='["Environment", "Owner"]' steampipe check control.compute_disk_tag_limit
+  ```
+
 ## Open Source & Contributing
 
 This repository is published under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0). Please see our [code of conduct](https://github.com/turbot/.github/blob/main/CODE_OF_CONDUCT.md). We look forward to collaborating with you!
