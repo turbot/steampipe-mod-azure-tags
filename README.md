@@ -145,6 +145,32 @@ done <<< "$INPUT"
 IFS=$OLDIFS
 ```
 
+### Common and Tag Dimensions
+
+The benchmark queries use common properties (like `connection_name`, `region`, `resource_group` and `subscription_id`) and tags that are defined in the form of a default list of strings in the `mod.pp` file. These properties can be overwritten in several ways:
+
+
+- Copy and rename the `powerpipe.ppvars.example` file to `powerpipe.ppvars`, and then modify the variable values inside that file
+- Pass in a value on the command line:
+
+  ```shell
+  powerpipe benchmark run azure_tags.benchmark.limit --var 'common_dimensions=["connection_name", "region", "resource_group", "subscription_id"]'
+  ```
+
+  ```shell
+  powerpipe benchmark run azure_tags.benchmark.limit --var 'tag_dimensions=["Environment", "Owner"]'
+  ```
+
+  - Set an environment variable:
+
+  ```shell
+  PP_VAR_common_dimensions='["connection_name", "region", "resource_group","subscription_id"]' powerpipe control run azure_tags.control.compute_disk_tag_limit
+  ```
+
+  ```shell
+  PP_VAR_tag_dimensions='["Environment", "Owner"]' powerpipe control run azure_tags.control.compute_disk_tag_limit
+  ```
+
 ## Open Source & Contributing
 
 This repository is published under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0). Please see our [code of conduct](https://github.com/turbot/.github/blob/main/CODE_OF_CONDUCT.md). We look forward to collaborating with you!

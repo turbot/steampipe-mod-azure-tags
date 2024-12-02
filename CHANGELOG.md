@@ -1,3 +1,10 @@
+## v1.1.0 [2024-12-02]
+
+_What's new?_
+
+- Added `tags` as dimensions to group and filter findings. (see [var.tag_dimensions](https://hub.powerpipe.io/mods/turbot/azure_tags/variables)) ([#35](https://github.com/turbot/steampipe-mod-azure-tags/pull/35))
+- Added `connection_name` in the common dimensions to group and filter findings. (see [var.common_dimensions](https://hub.powerpipe.io/mods/turbot/azure_tags/variables)) ([#35](https://github.com/turbot/steampipe-mod-azure-tags/pull/35))
+
 ## v1.0.1 [2024-10-24]
 
 _Bug fixes_
