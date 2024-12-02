@@ -1,3 +1,6 @@
+common_dimensions = ["resource_group", "subscription_id", "region"]
+tag_dimensions    = []
+
 mandatory_tags = ["Environment", "Owner"]
 prohibited_tags = ["Password", "Key"]
 tag_limit = 45
