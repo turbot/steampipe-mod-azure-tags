@@ -147,10 +147,10 @@ IFS=$OLDIFS
 
 ### Common and Tag Dimensions
 
-The benchmark queries use common properties (like `connection_name`, `region`, `resource_group` and `subscription_id`) and tags that are defined in the form of a default list of strings in the `mod.sp` file. These properties can be overwritten in several ways:
+The benchmark queries use common properties (like `connection_name`, `region`, `resource_group` and `subscription_id`) and tags that are defined in the form of a default list of strings in the `mod.pp` file. These properties can be overwritten in several ways:
 
 
-- Copy and rename the `powerpipe.spvars.example` file to `powerpipe.spvars`, and then modify the variable values inside that file
+- Copy and rename the `powerpipe.ppvars.example` file to `powerpipe.ppvars`, and then modify the variable values inside that file
 - Pass in a value on the command line:
 
   ```shell
@@ -168,7 +168,7 @@ The benchmark queries use common properties (like `connection_name`, `region`, `
   ```
 
   ```shell
-  SP_VAR_tag_dimensions='["Environment", "Owner"]' powerpipe control run azure_tags.control.compute_disk_tag_limit
+  PP_VAR_tag_dimensions='["Environment", "Owner"]' powerpipe control run azure_tags.control.compute_disk_tag_limit
   ```
 
 ## Open Source & Contributing
