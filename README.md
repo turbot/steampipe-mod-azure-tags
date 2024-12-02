@@ -150,25 +150,25 @@ IFS=$OLDIFS
 The benchmark queries use common properties (like `connection_name`, `region`, `resource_group` and `subscription_id`) and tags that are defined in the form of a default list of strings in the `mod.sp` file. These properties can be overwritten in several ways:
 
 
-- Copy and rename the `steampipe.spvars.example` file to `steampipe.spvars`, and then modify the variable values inside that file
+- Copy and rename the `powerpipe.spvars.example` file to `powerpipe.spvars`, and then modify the variable values inside that file
 - Pass in a value on the command line:
 
   ```shell
-  steampipe check benchmark.limit --var 'common_dimensions=["connection_name", "region", "resource_group", "subscription_id"]'
+  powerpipe benchmark run azure_tags.benchmark.limit --var 'common_dimensions=["connection_name", "region", "resource_group", "subscription_id"]'
   ```
 
   ```shell
-  steampipe check benchmark.limit --var 'tag_dimensions=["Environment", "Owner"]'
+  powerpipe benchmark run azure_tags.benchmark.limit --var 'tag_dimensions=["Environment", "Owner"]'
   ```
 
   - Set an environment variable:
 
   ```shell
-  SP_VAR_common_dimensions='["connection_name", "region", "resource_group","subscription_id"]' steampipe check control.compute_disk_tag_limit
+  PP_VAR_common_dimensions='["connection_name", "region", "resource_group","subscription_id"]' powerpipe control run azure_tags.control.compute_disk_tag_limit
   ```
 
   ```shell
-  SP_VAR_tag_dimensions='["Environment", "Owner"]' steampipe check control.compute_disk_tag_limit
+  SP_VAR_tag_dimensions='["Environment", "Owner"]' powerpipe control run azure_tags.control.compute_disk_tag_limit
   ```
 
 ## Open Source & Contributing
