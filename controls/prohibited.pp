@@ -49,7 +49,7 @@ locals {
 }
 
 benchmark "prohibited" {
-  title       = "Prohibited"
+  title       = "Azure Prohibited Tags"
   description = "Prohibited tags may contain sensitive, confidential, or otherwise unwanted data and should be removed."
   children = [
     control.api_management_prohibited,
@@ -577,7 +577,7 @@ control "resource_group_prohibited" {
       r._ctx,
       r.name,
       r.subscription_id,
-      r.region      
+      r.region
     from
       azure_resource_group as r
     full outer join

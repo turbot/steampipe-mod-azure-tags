@@ -18,7 +18,7 @@ locals {
 }
 
 benchmark "untagged" {
-  title       = "Untagged"
+  title       = "Azure Untagged Resources"
   description = "Untagged resources are difficult to monitor and should be identified and remediated."
   children = [
     control.api_management_untagged,
@@ -79,7 +79,7 @@ benchmark "untagged" {
     control.virtual_network_gateway_untagged,
     control.virtual_network_untagged
   ]
-  
+
   tags = merge(local.azure_tags_common_tags, {
     type = "Benchmark"
   })

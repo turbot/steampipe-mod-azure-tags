@@ -146,7 +146,7 @@ locals {
 }
 
 benchmark "expected_tag_values" {
-  title       = "Expected Tag Values"
+  title       = "Azure Expected Tag Values"
   description = "Resources should have specific values for some tags."
   children = [
     control.api_management_expected_tag_values,
@@ -735,7 +735,7 @@ control "resource_group_expected_tag_values" {
       _ctx,
       name,
       subscription_id,
-      region      
+      region
     from
       status_by_tag
     group by

@@ -34,7 +34,7 @@ locals {
 }
 
 benchmark "limit" {
-  title       = "Limit"
+  title       = "Azure Tag Limit"
   description = "The number of tags on each resource should be monitored to avoid hitting the limit unexpectedly."
   children = [
     control.api_management_tag_limit,
