@@ -31,14 +31,14 @@ locals {
         else title || ' is missing tags: ' || array_to_string(array(select jsonb_array_elements_text(missing_tags)), ', ') || '.'
       end as reason
       ${local.tag_dimensions_sql}
-      ${local.common_dimensions_sql}      
+      ${local.common_dimensions_sql}
     from
       analysis;
   EOQ
 }
 
 benchmark "mandatory" {
-  title       = "Mandatory"
+  title       = "Azure Mandatory Tags"
   description = "Resources should all have a standard set of tags applied for functions like resource organization, automation, cost control, and access control."
   children = [
     control.api_management_mandatory,
@@ -560,7 +560,7 @@ control "resource_group_mandatory" {
       name,
       subscription_id,
       tags,
-      region  
+      region
     from
       analysis;
   EOQ
